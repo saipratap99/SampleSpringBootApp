@@ -45,10 +45,9 @@ public class BusController {
 	
 	@GetMapping("/all")
 	@ResponseBody
-	public String index() {
-		List<Bus> buses = (List<Bus>) busRepo.findAll();
-		
-		return buses.toString();
+	public List<Bus> index() {
+		List<Bus> buses =  (List<Bus>) busRepo.findAll();
+		return buses;
 	}
 	
 	@GetMapping("/{busId}")
@@ -59,7 +58,7 @@ public class BusController {
 			bus = busRepo.findById(busId).orElse(null);
 		
 		//
-		List<Bus> listByNoOfSeats = busRepo.findByNoOfSeats(5);
+		List<Bus> listByNoOfSeats = busRepo.findByNoOfSeats(53);
 		System.out.println(listByNoOfSeats);
 		List<Bus> busesWithMoreThan63Seats = busRepo.findByNoOfSeatsGreaterThan(60);
 		System.out.println(busesWithMoreThan63Seats);
