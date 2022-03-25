@@ -6,7 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.HelloWorldApp.models.Bus;
 
@@ -28,17 +29,34 @@ public class HelloWorldController {
 	}
 	
 	@RequestMapping("/user")
-	public String user(HttpServletRequest req,String name) {
+	public String user(HttpServletRequest req,@RequestParam("myName")String name) {
 		HttpSession session = req.getSession();
 		session.setAttribute("name", name); // setting in JSP using JSTL
 		return "welcome.jsp";
 	}
 	
+	
+	/*
+	
 	@RequestMapping("/add_bus_details")
 	public String addBusDetails(Bus bus1, HttpSession session) {
 		System.out.println(bus1);
-//		HttpSession session = req.getSession();
+		// HttpSession session = req.getSession();
 		session.setAttribute("bus", bus1); // setting in JSP using JSTL
 		return "bus_details.jsp";
 	}
+	
+	*/
+	
+	@RequestMapping("/add_bus_details")
+	public ModelAndView addBusDetails(Bus bus1) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("bus", bus1);
+		mv.setViewName("bus_details.jsp");
+		return mv;
+	}
+	
+	
+	
+	
 }
