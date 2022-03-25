@@ -47,6 +47,7 @@ public class BusController {
 	@ResponseBody
 	public String index() {
 		List<Bus> buses = (List<Bus>) busRepo.findAll();
+		
 		return buses.toString();
 	}
 	
@@ -57,6 +58,15 @@ public class BusController {
 		if(busId != null)
 			bus = busRepo.findById(busId).orElse(null);
 		
+		//
+		List<Bus> listByNoOfSeats = busRepo.findByNoOfSeats(53);
+		System.out.println(listByNoOfSeats);
+		List<Bus> busesWithMoreThan63Seats = busRepo.findByNoOfSeatsGreaterThan(60);
+		System.out.println(busesWithMoreThan63Seats);
+		List<Bus> busesWithMoreThan63SortedByService = busRepo.findByNoOfSeatsSorted(60);
+		System.out.println(busesWithMoreThan63SortedByService);
+		
+		//
 		return bus != null ? bus.toString() : "No record found";
 	}
 }
