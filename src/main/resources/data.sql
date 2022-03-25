@@ -1,0 +1,1 @@
+insert into bus values(12,'luxury',54);

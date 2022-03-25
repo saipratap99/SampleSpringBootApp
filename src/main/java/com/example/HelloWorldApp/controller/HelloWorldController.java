@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.HelloWorldApp.models.Bus;
+import com.example.HelloWorldApp.model.Bus;
 
 @Controller
 public class HelloWorldController {
@@ -19,6 +19,7 @@ public class HelloWorldController {
 		return "home.jsp";
 	}
 	
+	/*
 	@RequestMapping("/search")
 	public String search(HttpServletRequest req, HttpServletResponse res) {
 		
@@ -28,6 +29,7 @@ public class HelloWorldController {
 		return "search.jsp";
 	}
 	
+	*/
 	@RequestMapping("/user")
 	public String user(HttpServletRequest req,@RequestParam("myName")String name) {
 		HttpSession session = req.getSession();
@@ -48,6 +50,7 @@ public class HelloWorldController {
 	
 	*/
 	
+	/*
 	@RequestMapping("/add_bus_details")
 	public ModelAndView addBusDetails(Bus bus1) {
 		ModelAndView mv = new ModelAndView();
@@ -55,7 +58,7 @@ public class HelloWorldController {
 		mv.setViewName("bus_details.jsp");
 		return mv;
 	}
-	
+	*/
 	
 	
 	
