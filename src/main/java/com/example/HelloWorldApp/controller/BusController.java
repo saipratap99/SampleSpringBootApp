@@ -1,8 +1,11 @@
 package com.example.HelloWorldApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,5 +41,22 @@ public class BusController {
 	public ModelAndView addBusDetails(Bus bus) {
 		busRepo.save(bus);
 		return getBusDetails("Bus details added!");
+	}
+	
+	@GetMapping("/all")
+	@ResponseBody
+	public String index() {
+		List<Bus> buses = (List<Bus>) busRepo.findAll();
+		return buses.toString();
+	}
+	
+	@GetMapping("/{busId}")
+	@ResponseBody
+	public String show(@PathVariable Integer busId) {
+		Bus bus = null;
+		if(busId != null)
+			bus = busRepo.findById(busId).orElse(null);
+		
+		return bus != null ? bus.toString() : "No record found";
 	}
 }
