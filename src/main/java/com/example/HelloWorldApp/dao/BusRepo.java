@@ -15,6 +15,4 @@ public interface BusRepo extends CrudRepository<Bus, Integer> {
 
 	@Query("from Bus where no_of_seats > ?1 order by service_type")
 	List<Bus> findByNoOfSeatsSorted(int i);
-	
-	
 }
